@@ -17,7 +17,15 @@ Copyright (C) Microsoft Corporation. All rights reserved.
     <AllowUnsafeBlocks Condition="$(CsWinRTEnabled)">true</AllowUnsafeBlocks>
     <CoreCompileDependsOn>CsWinRTIncludeProjection;CsWinRTRemoveWinMDReferences;$(CoreCompileDependsOn)</CoreCompileDependsOn>
   </PropertyGroup>
-  
+
+  <!-- Include the hosting dlls when packaging an authored component  -->
+  <Target Name="CsWinRTIncludeHostDlls" Condition="'$(CsWinRTComponent)' == 'true'" BeforeTargets="GenerateNuspec" Outputs="@(Content)">
+    <ItemGroup>
+      <_PackageFiles Include="$(CsWinRTPath)lib\net5.0\WinRT.Host.Shim.dll" />
+      <_PackageFiles Include="$(CsWinRTPath)native\$(Platform)\WinRT.Host.dll"/>
+    </ItemGroup>
+  </Target>
+
   <!-- Remove WinRT.Host.Shim.dll references -->
   <Target Name="CsWinRTRemoveShimDllReferences" AfterTargets="ResolvePackageAssets" BeforeTargets="ResolveLockFileAnalyzers" Outputs="@(Reference)">
     <ItemGroup>
