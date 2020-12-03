@@ -344,6 +344,7 @@ namespace winrt::TestComponentCSharp::implementation
         void RaiseDataErrorChanged();
 
         static Windows::Foundation::IInspectable BadRuntimeClassName();
+        Windows::UI::Composition::Compositor ReturnCompositor();
     };
 }
 

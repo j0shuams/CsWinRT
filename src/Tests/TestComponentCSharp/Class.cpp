@@ -1365,5 +1365,9 @@ namespace winrt::TestComponentCSharp::implementation
 
         return winrt::make<bad_runtime_classname>();
     }
+    Windows::UI::Composition::Compositor Class::ReturnCompositor()
+    {
+        return Windows::UI::Composition::Compositor();
+    }
 }
 

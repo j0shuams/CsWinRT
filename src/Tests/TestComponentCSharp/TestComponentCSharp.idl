@@ -334,6 +334,8 @@ namespace TestComponentCSharp
         void RaiseDataErrorChanged();
 
         static Object BadRuntimeClassName{ get; };
+
+        Windows.UI.Composition.Compositor ReturnCompositor();
     }
 
     [threading(sta), marshaling_behavior(standard)]

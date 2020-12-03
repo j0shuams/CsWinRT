@@ -46,6 +46,12 @@ namespace UnitTest
         }
 
         [Fact]
+        public void TestCompositor()
+        {
+            var compositor = new Windows.UI.Composition.Compositor();
+        }
+
+        [Fact]
         public void TestGetByte()
         {
             var array = new byte[] { 0x01 };
