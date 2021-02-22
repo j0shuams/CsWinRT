@@ -97,8 +97,10 @@ namespace DiagnosticTests
         {
             get 
             {
+                
                 // private getter
                 yield return new TestCaseData(PrivateGetter, WinRTRules.PrivateGetterRule).SetName("Property. PrivateGetter");
+                /*
                 yield return new TestCaseData(PropertyNoGetter, WinRTRules.PrivateGetterRule).SetName("Property. No Get, public Setter");
                 // namespace tests
                 yield return new TestCaseData(SameNameNamespacesDisjoint, WinRTRules.DisjointNamespaceRule).SetName("Namespace. isn't accessible without Test prefix, doesn't use type");
@@ -385,6 +387,7 @@ namespace DiagnosticTests
                 yield return new TestCaseData(SystemArraySubNamespace_NotReturnAndInput2of2, WinRTRules.UnsupportedTypeRule).SetName("InvalidType. System Array Subnamespace 2nd arg of two");
                 yield return new TestCaseData(SystemArraySubNamespace_NotReturnAndInput2of3, WinRTRules.UnsupportedTypeRule).SetName("InvalidType. System Array Subnamespace 2nd arg of third");
                 #endregion
+                */
             }
         }
 
@@ -396,6 +399,7 @@ namespace DiagnosticTests
         {
             get
             {
+                /*
                 yield return new TestCaseData(Valid_PrivateSetter).SetName("Valid. Property. Private Setter");
                 yield return new TestCaseData(Valid_RollYourOwnAsyncAction).SetName("Valid. AsyncInterfaces. Implementing your own IAsyncAction");
                 yield return new TestCaseData(Valid_CustomDictionary).SetName("Valid. CustomProjection. IDictionary<string,BasicStruct>");
@@ -403,9 +407,11 @@ namespace DiagnosticTests
                 yield return new TestCaseData(Valid_TwoNamespacesSameName).SetName("Valid. Namespaces with same name");
                 yield return new TestCaseData(Valid_NestedNamespace).SetName("Valid. Nested namespaces are fine");
                 yield return new TestCaseData(Valid_NestedNamespace2).SetName("Valid. Twice nested namespaces are fine");
+                */
                 yield return new TestCaseData(Valid_NestedNamespace3).SetName("Valid. Namespace. Test[dot]Component with an inner namespace InnerComponent");
                 yield return new TestCaseData(Valid_NestedNamespace4).SetName("Valid. Namespace. Test and Test[dot]Component namespaces, latter with an inner namespace");
                 yield return new TestCaseData(Valid_NestedNamespace5).SetName("Valid. Namespace. ABCType in ABwinmd");
+                /*
                 yield return new TestCaseData(Valid_NamespacesDiffer).SetName("Valid. Similar namespace but different name (not just case)");
                 yield return new TestCaseData(Valid_NamespaceAndPrefixedNamespace).SetName("Valid. Two top-level namespaces, one prefixed with the other");
                 
@@ -558,6 +564,7 @@ namespace DiagnosticTests
                 yield return new TestCaseData(Valid_TwoOverloads_OneAttribute_3).SetName("Valid. DefaultOverload attribute 7");
 
                 #endregion
+                */
             }
         }
 
