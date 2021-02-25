@@ -34,7 +34,6 @@
     <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
-    <EntryPointProjectUniqueName>..\WpfApp\WpfApp.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -44,9 +43,11 @@
   <!-- Define TFM for refactoring paths below-->
   <PropertyGroup>
     <TargetFramework>net5.0-windows$(TargetPlatformVersion)</TargetFramework>
+    <EntryPointProjectUniqueName>..\WpfApp\WpfApp.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <!-- C#/WinRT version 1.1.2-prerelease.210208.6 requires copying the following -->
   <ItemGroup>
+    <!--
     <Content Include="..\WpfApp\bin\$(Platform)\$(Configuration)\$(TargetFramework)\runtimes\win-$(Platform)\native\WinRT.Host.dll">
       <Link>WinRT.Host.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -66,11 +67,11 @@
     <Content Include="..\WpfApp\bin\$(Platform)\$(Configuration)\$(TargetFramework)\BgTaskComponent.dll">
       <Link>BgTaskComponent.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="WinRT.Host.runtimeconfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+    </Content>-->
+      <Content Include="WinRT.Host.runtimeconfig.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      </ItemGroup>
   <ItemGroup>
     <Content Include="Images\SplashScreen.scale-200.png" />
     <Content Include="Images\LockScreenLogo.scale-200.png" />
@@ -80,10 +81,11 @@
     <Content Include="Images\StoreLogo.png" />
     <Content Include="Images\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
-  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\CppWinRTUwp\CppWinRTUwp.vcxproj" />
     <ProjectReference Include="..\WpfApp\WpfApp.csproj">
       <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>

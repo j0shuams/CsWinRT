@@ -49,7 +49,7 @@
         </Application>
     </Applications>
 
-    <!-- To host the BgTaskComponent, you must add this activatable class entry -->
+    <!-- To host the BgTaskComponent, you must add this activatable class entry 
     <Extensions>
         <Extension Category="windows.activatableClass.inProcessServer">
             <InProcessServer>
@@ -58,6 +58,7 @@
             </InProcessServer>
         </Extension>
     </Extensions>
+    -->
 
     <Capabilities>
         <Capability Name="internetClient" />
