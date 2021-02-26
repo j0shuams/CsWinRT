@@ -41,6 +41,13 @@ namespace Generator
             CheckDeclarations();
         }
 
+        /// <summary>return true if the strings are the same characters, just differing by case</summary>
+        private bool StringsDifferByCaseOnly(string a, string b)
+        {
+            // are they equal ignoring case, but inequal considering case?
+            return String.Equals(a, b, StringComparison.OrdinalIgnoreCase) && !String.Equals(a, b, StringComparison.Ordinal))
+        }
+
         private void CheckNamespaces()
         {
             WinRTSyntaxReciever syntaxReciever = (WinRTSyntaxReciever)_context.SyntaxReceiver;
@@ -50,14 +57,20 @@ namespace Generator
 
             foreach (var @namespace in syntaxReciever.Namespaces)
             {
-                var model = _context.Compilation.GetSemanticModel(@namespace.SyntaxTree);
-                var namespaceSymbol = model.GetDeclaredSymbol(@namespace);
 
-                string namespaceString = namespaceSymbol.ToString();
-
-                bool newNamespaceDeclaration = true;
+                var namespaceString = namespaceSymbol.ToString();
+                
                 // Because modules could have a namespace defined in different places (i.e. defines a partial class)
                 // we can't rely on `Contains` so we manually check that namespace names cannot differ by case only
+                var newNamespaceDeclaration = true;
+                newNamespaceDeclaration &= !namespaceNames.Any(definedNamespace => StringsDifferByCaseOnly(definedNamespace, namespaceString));
+                
+                if (newNamespaceDeclaration) 
+                {
+                    Report(WinRTRules.NamespacesDifferByCase, namespaceSymbol.Locations.First(), namespaceString);
+                }
+
+                /* 
                 foreach (var usedNamespaceName in namespaceNames)
                 {
                     if (String.Equals(namespaceString, usedNamespaceName, StringComparison.OrdinalIgnoreCase) &&
@@ -67,12 +80,15 @@ namespace Generator
                         Report(WinRTRules.NamespacesDifferByCase, namespaceSymbol.Locations.First(), namespaceString);
                     }
                 }
+                */
 
                 if (newNamespaceDeclaration)
                 {
                     namespaceNames.Add(namespaceString);
                 }
 
+                // check the fully qualified version of this namespace against the _assemblyName 
+                var namespaceSymbol = _context.Compilation.GetSemanticModel(@namespace.SyntaxTree).GetDeclaredSymbol(@namespace);
                 if (IsInvalidNamespace(namespaceSymbol, _assemblyName))
                 {
                     Report(WinRTRules.DisjointNamespaceRule, namespaceSymbol.Locations.First(), _assemblyName, namespaceString);
