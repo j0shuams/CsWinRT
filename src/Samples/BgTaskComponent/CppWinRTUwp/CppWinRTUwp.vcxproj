@@ -179,6 +179,7 @@
     <Reference Include="BgTaskComponent">
       <HintPath>..\BgTaskComponent\bin\x64\Debug\net5.0-windows10.0.19041.0\BgTaskComponent.winmd</HintPath>
       <IsWinMDFile>true</IsWinMDFile>
+      <Implementation>WinRT.Host.dll</Implementation>
     </Reference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
