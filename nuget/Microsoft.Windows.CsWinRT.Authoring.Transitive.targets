@@ -24,8 +24,12 @@
 
   <Target Name="CsWinRTCopyAuthoringDlls" Condition="'$(HostingSupport-IsNative)' == 'true'" Outputs="@(ReferenceCopyLocalPaths)">
     <ItemGroup>
+      <!-- Authored component's dll -->
       <ReferenceCopyLocalPaths Include="$(HostingSupport-Net5Dir)\*.dll" />
+      <!-- Any dependencies the authored component has --> 
+      <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\build\native\*" />
 
+      <!-- WinRT.Host.dll (arch specific) -->
       <ReferenceCopyLocalPaths Include="$(HostingSupport-RuntimesDir)\win-$(Platform)\native\WinRT.Host.dll"
                                Condition="'$(Platform)' == 'x64' OR '$(Platform)' == 'x86' OR '$(HostingSupport-IsArmArch)' == 'true'" />
 
