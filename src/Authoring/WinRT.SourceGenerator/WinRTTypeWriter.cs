@@ -532,7 +532,7 @@ namespace Generator
                     assembly = symbol.ContainingAssembly.Name;
                 }
             }
-
+            Logger.Log("DEBUGGING: namespace: " + @namespace + "; name: " + name + "; assembly: " + assembly);
             return GetTypeReference(@namespace, name, assembly);
         }
 
