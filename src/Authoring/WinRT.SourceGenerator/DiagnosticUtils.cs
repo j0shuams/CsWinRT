@@ -371,6 +371,13 @@ namespace Generator
             return topLevel.ToString() != assemblyName;
         }
 
+        private bool IsWinRTType(ISymbol type)
+        {
+            bool isProjectedType = type.GetAttributes().
+                Any(attribute => attribute.AttributeClass.Name == "WindowsRuntimeTypeAttribute");
+            return isProjectedType;
+        }
+
         ///<summary>Array types can only be one dimensional and not System.Array, 
         ///and there are some types not usable in the Windows Runtime, like KeyValuePair</summary> 
         ///<param name="typeSymbol">The type to check</param><param name="loc">where the type is</param>
@@ -378,6 +385,13 @@ namespace Generator
         /// <param name="typeId">the type this member (method/prop) lives in</param>
         private void ReportIfInvalidType(ITypeSymbol typeSymbol, Location loc, SyntaxToken memberId, SyntaxToken typeId)
         {
+            if (!IsWinRTType(typeSymbol))
+            {
+                Report(WinRTRules.NotValidType, loc, memberId, typeSymbol.ToDisplayString());
+                // "Method '{0}' has a parameter '{1}' of type '{2}', '{2}' is not a valid Windows Runtime type");
+
+            }
+
             // If it's of the form int[], it has to be one dimensional
             if (typeSymbol.TypeKind == TypeKind.Array)
             {

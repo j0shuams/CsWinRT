@@ -173,5 +173,10 @@ namespace WinRT.SourceGenerator
             "Method '{0}' has parameter '{1}' which is not an array, and which has either a "
             + "ReadOnlyArray attribute or a WriteOnlyArray attribute. Windows Runtime does "
             + "not support marking non-array parameters with ReadOnlyArray or WriteOnlyArray.");
+
+        public static DiagnosticDescriptor NotValidType = MakeRule(
+            "CsWinRT1027",
+            "Type is not a valid Windows Runtime type",
+            "Method '{0}' has a parameter of type '{1}', '{1}' is not a valid Windows Runtime type");
     } 
 } 
