@@ -64,14 +64,17 @@
       <Link>Microsoft.Windows.SDK.NET.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\WpfApp\bin\$(Platform)\$(Configuration)\$(TargetFramework)\BgTaskComponent.dll">
+    
+    <Content Include="..\BgTaskComponent\bin\$(Platform)\$(Configuration)\$(TargetFramework)\BgTaskComponent.dll">
       <Link>BgTaskComponent.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>-->
-      <Content Include="WinRT.Host.runtimeconfig.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
-      </ItemGroup>
+    </Content>
+  -->
+  <Content Include="WinRT.Host.runtimeconfig.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </Content>
+
+</ItemGroup>
   <ItemGroup>
     <Content Include="Images\SplashScreen.scale-200.png" />
     <Content Include="Images\LockScreenLogo.scale-200.png" />

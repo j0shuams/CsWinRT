@@ -5,11 +5,13 @@
 using namespace winrt;
 using namespace Windows::UI::Xaml;
 
+
 namespace winrt::CppWinRTUwp::implementation
 {
     MainPage::MainPage()
     {
         InitializeComponent();
+
     }
 
     int32_t MainPage::MyProperty()

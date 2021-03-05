@@ -175,13 +175,6 @@
       <Project>{00E03194-1F8A-403C-ACAA-12A645A0743D}</Project>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="BgTaskComponent">
-      <HintPath>..\BgTaskComponent\bin\x64\Debug\net5.0-windows10.0.19041.0\BgTaskComponent.winmd</HintPath>
-      <IsWinMDFile>true</IsWinMDFile>
-      <Implementation>WinRT.Host.dll</Implementation>
-    </Reference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\Microsoft.Windows.CppWinRT.2.0.210211.2\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.210211.2\build\native\Microsoft.Windows.CppWinRT.targets')" />
